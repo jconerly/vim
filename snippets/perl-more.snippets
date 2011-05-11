@@ -52,3 +52,12 @@ snippet moosedef
 # Object self getter
 snippet self
 	my $self = shift;
+# Switch 
+snippet switch
+	switch (${1:val}) {
+	    case ${2:case} { ${3:code} }
+	    case ${4:case} { ${5:code} }
+	    else           { ${6:code} }
+	}
+snippet switchcase
+	case ${1:case} { ${2:code} }

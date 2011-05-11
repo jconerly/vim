@@ -59,6 +59,10 @@ if [ -e "$GIT_PATH" ] ; then
     rm -rf $GIT_PATH
 fi
 
+if [ -e "$TARGET_DATA" ] ; then
+    rm -rf $TARGET_DATA
+fi
+
 echo -n 'installing badass vim environment... '
 cp -r $PACKAGE $TARGET_DATA
 ln -s $REAL_RC $TARGET_RC
