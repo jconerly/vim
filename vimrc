@@ -35,7 +35,7 @@ set history=1000                       " remember the last 200 commands
 set bg=dark                            " dark background settings
 set dictionary=/usr/share/dict/words   " dict
 set foldmethod=marker                  " fold code based on markers
-set showbreak=…                        " ellipsis for line contuations
+"set showbreak=…                        " ellipsis for line contuations
 set wildmode=list:longest              " Make file/command completion useful
 set backspace=indent,eol,start         " Intuitive backspacing in insert mode
 set modelines=0                        " no modelines
@@ -54,8 +54,7 @@ map <leader>e :e! ~/.vim/vimrc<cr>
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " see our tabs and spaces
-"set listchars=tab:▸\ ,eol:¬
-set list listchars=tab:»·,trail:·,eol:¬
+"set list listchars=tab:»·,trail:·,eol:¬
 
 " shortcut to lookup and open files within the current tree
 " of the file that's currently open.
