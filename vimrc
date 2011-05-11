@@ -70,6 +70,9 @@ map <leader>et :tabe %%
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
+" press Space to turn off highlighting and clear any message already displayed
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
 " want to use 'par' for paragraph formatting if it's installed.
 "
 " options:

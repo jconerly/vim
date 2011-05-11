@@ -1,14 +1,16 @@
 #!/bin/sh
 
 SCRIPT="install"
-PACKAGE=$(pwd)
 HOME=$HOME
+PACKAGE=$(pwd)
 ORIG=0
 TARGET_RC=".vimrc"
 ORIG_RC=".vimrc.orig"
 TARGET_DATA=".vim"
 ORIG_DATA=".vim.orig"
 REAL_RC="$HOME/$TARGET_DATA/vimrc"
+SCRIPT_PATH="$TARGET_DATA/$SCRIPT"
+GIT_PATH="$TARGET_DATA/.git"
 
 cd $HOME
 
@@ -22,13 +24,28 @@ if [ -e "$TARGET_RC" ] ; then
 fi
 
 if [ -e "$TARGET_DATA" ] ; then
-    echo Found existing vim data in \'$TARGET_DATA\'. Backing up to \'$ORIG_DATA\'...
-    mv $TARGET_DATA $ORIG_DATA
+    if [ -e "$ORIG_DATA" ] ; then
+        echo Found existing original data in \'$ORIG_DATA\'. Skipping data backup...
+    else
+        echo Found existing vim data in \'$TARGET_DATA\'. Backing up to \'$ORIG_DATA\'...
+        mv $TARGET_DATA $ORIG_DATA
+    fi
 fi
 
-cp -r $PACKAGE .
-rm $TARGET_DATA/$SCRIPT
+if [ -e "$GIT_PATH" ] ; then
+    rm -rf $GIT_PATH
+fi
+
+cp -r $PACKAGE $TARGET_DATA
 ln -s $REAL_RC $TARGET_RC
+
+if [ -e "$GIT_PATH" ] ; then
+    rm -rf $GIT_PATH
+fi
+
+if [ -e "$SCRIPT_PATH" ] ; then
+    rm $SCRIPT_PATH
+fi
 
 if [[ ("$ORIG" == "1" ) || (-e "$ORIG_RC") ]] ; then
     echo "source ~/$ORIG_RC" >> $REAL_RC
