@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SCRIPT="install"
 HOME=$HOME
@@ -17,8 +17,10 @@ if [ "$CTAGS" == "" ] ; then
     echo
     echo ctags is not installed. please install it manually:
     echo '  $ cd download/'
-    echo '  $ tar -xvf ctags-5.8.tar.gz'
+    echo '  $ tar -xzf ctags-5.8.tar.gz'
+    echo '  $ cd ctags-5.8'
     echo '  $ ./configure ; make ; sudo make install'
+    echo
     exit 1
 fi
 
