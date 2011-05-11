@@ -59,6 +59,7 @@ if [ -e "$GIT_PATH" ] ; then
     rm -rf $GIT_PATH
 fi
 
+echo -n 'installing badass vim environment... '
 cp -r $PACKAGE $TARGET_DATA
 ln -s $REAL_RC $TARGET_RC
 
@@ -73,3 +74,5 @@ fi
 if [[ ("$ORIG" == "1" ) || (-e "$ORIG_RC") ]] ; then
     echo "source ~/$ORIG_RC" >> $REAL_RC
 fi
+
+echo done!
