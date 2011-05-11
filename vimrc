@@ -28,6 +28,8 @@ set hlsearch                           " Highlight search terms...
 set incsearch                          " ...dynamically as they are typed.
 set smartcase                          " case-sensitive only if there is a
                                        "   capital letter in the search expression
+set encoding=utf-8                     " needed for special (wide) chars work
+set fileencoding=utf-8                 " needed for special (wide) chars work
 set shortmess=atI                      " stifle interruptive prompts
 set scrolloff=5                        " keep at least 5 lines above/below cursor
 set sidescrolloff=5                    " keep at least 5 columns l/r of cursor
@@ -54,7 +56,7 @@ map <leader>e :e! ~/.vim/vimrc<cr>
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " see our tabs and spaces
-"set list listchars=tab:»·,trail:·,eol:¬
+set list listchars=tab:»·,trail:·,eol:¬
 
 " shortcut to lookup and open files within the current tree
 " of the file that's currently open.
