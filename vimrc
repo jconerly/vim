@@ -37,7 +37,7 @@ set history=1000                       " remember the last 200 commands
 set bg=dark                            " dark background settings
 set dictionary=/usr/share/dict/words   " dict
 set foldmethod=marker                  " fold code based on markers
-"set showbreak=…                        " ellipsis for line contuations
+set showbreak=…                        " ellipsis for line contuations
 set wildmode=list:longest              " Make file/command completion useful
 set backspace=indent,eol,start         " Intuitive backspacing in insert mode
 set modelines=0                        " no modelines
@@ -45,9 +45,20 @@ set modelines=0                        " no modelines
 
 " fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>W :wq!<cr>
 
 " fast editing of the vimrc
-map <leader>e :e! ~/.vim/vimrc<cr>
+nmap <leader>e :e! ~/.vim/vimrc<cr>
+
+" duplicate line with the dup commented out
+nmap <leader>C ,cyP
+
+" take a vselect block and turn it into an eval{} block
+vmap <leader>E S{Ieval <esc>%A; warn $@ if $@;<esc>
+
+" perltidy helpers
+nmap <leader>P :%!perltidy -q<cr>
+vmap <leader>P !perltidy -q<cr>
 
 " when vimrc is edited, reload it
 "autocmd! bufwritepost vimrc source ~/.vim/vimrc
@@ -93,6 +104,7 @@ map < :set nopaste<CR>
 map ` :!perl -c %<CR>
 map + :w<CR>:!clear && perl %<CR>
 map ^ :TlistToggle<CR>
+map T :NERDTreeToggle<CR>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -106,6 +118,9 @@ highlight SpecialKey guifg=#4a4a59
 if has("autocmd")
   " Enable file type detection
   filetype on
+
+  " jump to the last position when reopening a file
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
   " Syntax of these languages is fussy over tabs Vs spaces
   autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab

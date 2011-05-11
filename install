@@ -12,6 +12,7 @@ REAL_RC="$HOME/$TARGET_DATA/vimrc"
 SCRIPT_PATH="$TARGET_DATA/$SCRIPT"
 GIT_PATH="$TARGET_DATA/.git"
 CTAGS=$(which ctags)
+PAR=$(which par)
 
 if [ "$CTAGS" == "" ] ; then
     echo
@@ -22,7 +23,9 @@ if [ "$CTAGS" == "" ] ; then
         tar -xzf ctags-5.8.tar.gz
         cd ctags-5.8
         ./configure ; make ; sudo make install
-        cd ../..
+        cd ..
+        rm -rf ctags-5.8
+        cd ..
     else
         echo
         echo please install it manually:
@@ -32,6 +35,31 @@ if [ "$CTAGS" == "" ] ; then
         echo '  $ ./configure ; make ; sudo make install'
         echo
         exit 1
+    fi
+fi
+
+if [ "$PAR" == "" ] ; then
+    echo
+    echo -n 'par is not installed. install it? [y/n] '
+    read INST
+    if [[ ("$INST" == "y") || ("$INST" == "Y") ]] ; then
+        cd download
+        tar -xzf Par152.tar.gz
+        cd Par152
+        make -f protoMakefile
+        sudo cp par /usr/bin/
+        cd ..
+        rm -rf Par152
+        cd ..
+    else
+        echo
+        echo please install it manually:
+        echo '  $ cd download'
+        echo '  $ tar -xzf Par152.tar.gz'
+        echo '  $ cd Par152'
+        echo '  $ make -f protoMakefile'
+        echo '  $ sudo cp par /usr/bin/'
+        echo
     fi
 fi
 
