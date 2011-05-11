@@ -11,6 +11,16 @@ ORIG_DATA=".vim.orig"
 REAL_RC="$HOME/$TARGET_DATA/vimrc"
 SCRIPT_PATH="$TARGET_DATA/$SCRIPT"
 GIT_PATH="$TARGET_DATA/.git"
+CTAGS=$(which ctags)
+
+if [ "$CTAGS" == "" ] ; then
+    echo
+    echo ctags is not installed. please install it manually:
+    echo '  $ cd download/'
+    echo '  $ tar -xvf ctags-5.8.tar.gz'
+    echo '  $ ./configure ; make ; sudo make install'
+    exit 1
+fi
 
 cd $HOME
 
