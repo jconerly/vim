@@ -1,0 +1,13 @@
+snippet module
+	-module(${1:module}).
+	-compile(export_all).
+
+	${2:code...}
+
+
+snippet fun
+	${1:fun}(${2:param}) ->
+	  ${3:code...}
+snippet fung
+	${1:fun}(${2:param}) when ${3:guard} ->
+	  ${4:code...}

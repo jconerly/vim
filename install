@@ -1,0 +1,35 @@
+#!/bin/sh
+
+SCRIPT="install"
+PACKAGE=$(pwd)
+HOME=$HOME
+ORIG=0
+TARGET_RC=".vimrc"
+ORIG_RC=".vimrc.orig"
+TARGET_DATA=".vim"
+ORIG_DATA=".vim.orig"
+REAL_RC="$HOME/$TARGET_DATA/vimrc"
+
+cd $HOME
+
+if [ -e "$TARGET_RC" ] ; then
+    if [ -L "$TARGET_RC" ] ; then
+        rm -f $TARGET_RC
+    else
+        mv $TARGET_RC $ORIG_RC
+        ORIG=1
+    fi
+fi
+
+if [ -e "$TARGET_DATA" ] ; then
+    echo Found existing vim data in \'$TARGET_DATA\'. Backing up to \'$ORIG_DATA\'...
+    mv $TARGET_DATA $ORIG_DATA
+fi
+
+cp -r $PACKAGE .
+rm $TARGET_DATA/$SCRIPT
+ln -s $REAL_RC $TARGET_RC
+
+if [[ ("$ORIG" == "1" ) || (-e "$ORIG_RC") ]] ; then
+    echo "source ~/$ORIG_RC" >> $REAL_RC
+fi

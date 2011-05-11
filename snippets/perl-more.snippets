@@ -1,0 +1,54 @@
+# Data::Dumper Helpers
+snippet udd
+	use Data::Dumper;
+snippet prd
+	print Dumper ${1:object};
+snippet prda
+	print Dumper \@_;
+snippet wad
+	warn Dumper ${1:object};
+# Perl script
+snippet script
+	#!/usr/bin/perl -w
+
+	$|++;
+	use strict;
+	use 5.10.0;
+
+	${1}
+
+	__END__
+# Moose Package
+snippet moose
+	package ${1:class};
+
+	use Moose;
+	use namespace::autoclean;
+
+	has '${2:name}' => (
+	    is => '${3:ro}',
+	    isa => '${4:Any}',
+	    ${5:other}
+	);
+
+	no Moose;
+
+	1;
+
+	__END__
+# Moose aAttribute
+snippet mooseattr
+	has '${1:name}' => (
+	    is => '${2:ro}',
+	    isa => '${3:Any}',
+	    ${4:other}
+	);
+snippet moosereq
+	required => 1,
+snippet mooselb
+	lazy_build => 1,
+snippet moosedef
+	default => sub { ${1:code} },
+# Object self getter
+snippet self
+	my $self = shift;
