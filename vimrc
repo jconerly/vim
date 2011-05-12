@@ -4,8 +4,8 @@
 
 " operational settings
 syntax on                              " syntax on
-filetype on                            " automatic file type detection
-filetype plugin on                     " automatic file plugin detection
+filetype plugin indent on              " file type detection, plugins, indenting...
+                                       "  ... the cool stuff
 
 let mapleader=','
 let maplocalleader=','                 " all my macros start with ,
@@ -17,15 +17,14 @@ set hidden                             " allow editing multiple unsaved buffers
 set more                               " the 'more' prompt
 set autoread                           " watch for file changes by other programs
 set visualbell                         " visual beep
-set nobackup                           " don't produce *~ backup files
 set noautowrite                        " don't automatically write on :next, etc
 set wildmenu                           " : menu has tab completion, etc
 set ruler                              " cursor location information
 set list                               " visualize tabbs and spaces
 set number                             " line numbers in lefthandmost column
-set ignorecase                         " ignore case when performing searches
 set hlsearch                           " Highlight search terms...
 set incsearch                          " ...dynamically as they are typed.
+set ignorecase                         " ignore case when performing searches
 set smartcase                          " case-sensitive only if there is a
                                        "   capital letter in the search expression
 set encoding=utf-8                     " needed for special (wide) chars work
@@ -38,32 +37,59 @@ set bg=dark                            " dark background settings
 set dictionary=/usr/share/dict/words   " dict
 set foldmethod=marker                  " fold code based on markers
 set showbreak=…                        " ellipsis for line contuations
+set backupdir-=.                       " handle swp files appropriately
+set backupdir^=~/tmp,/tmp              " handle swp files appropriately
+set directory=~/tmp//,.                " handle swp files appropriately
 set wildmode=list:longest              " Make file/command completion useful
 set backspace=indent,eol,start         " Intuitive backspacing in insert mode
 set modelines=0                        " no modelines
                                        "   [http://www.guninski.com/vim1.html]
 
-" fast saving
-nmap <leader>w :w!<cr>
-nmap <leader>W :wq!<cr>
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+endif
+
+" quickly open vimrc anywhere for editing
+nmap <leader>v :sp ~/.vim/vimrc<CR>
+
+" fast file saving
+nmap <leader>w :w!<CR>
+nmap <leader>W :wq!<CR>
 
 " fast editing of the vimrc
-nmap <leader>e :e! ~/.vim/vimrc<cr>
+nmap <leader>e :e! ~/.vim/vimrc<CR>
 
 " duplicate line with the dup commented out
 nmap <leader>C ,cyP
 
-" take a vselect block and turn it into an eval{} block
-vmap <leader>E S{Ieval <esc>%A; warn $@ if $@;<esc>
+" cut and paste helpers
+nmap <leader>Z :set paste<CR>
+nmap <leader>z :set nopaste<CR>
 
-" perltidy helpers
-nmap <leader>P :%!perltidy -q<cr>
-vmap <leader>P !perltidy -q<cr>
+" yank from cursor to end of line
+nmap Y y$
 
-" when vimrc is edited, reload it
-"autocmd! bufwritepost vimrc source ~/.vim/vimrc
+" toggle TagList plugin on and off
+map ^ :TlistToggle<CR>
 
-" simple wrapping macro for simple paragraph formatting
+" tobble NERDTree plugin on and off
+nmap T :NERDTreeToggle<CR>
+
+" PERL - take a vselect block and turn it into an eval{} block
+vmap <leader>E S{Ieval <ESC>%A; warn $@ if $@;<ESC>
+
+" PERL - perltidy helpers
+nmap <leader>P :%!perltidy -q<CR>
+vmap <leader>P !perltidy -q<CR>
+
+" PERL - check syntax
+nmap ~ :!perl -c %<CR>
+
+" PERL - execute script
+nmap + :w<CR>:!perl %<CR>
+
+" wrapping macro for simple paragraph formatting
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " see our tabs and spaces
@@ -77,13 +103,20 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
-" for dealing with code folding blocks, i.e. saving them to disk so
-" they are persistant between reads of the same file.
+" for dealing with code folding blocks
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
 " press Space to turn off highlighting and clear any message already displayed
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+nmap <leader>n :set number!<CR>
+nmap <leader>i :set list! number!<CR>
+
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
 
 " want to use 'par' for paragraph formatting if it's installed.
 "
@@ -94,25 +127,8 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 "    e - remove ‘superflous’ lines
 "    q - handle nested quotations in plaintext email
 "
-" TODO: add if/else block to check for this.
+" TODO: add if/else block to check if par is installed
 set formatprg=par\ -w70rjeq
-
-" some helper key maps
-map Y y$
-map > :set paste<CR>i
-map < :set nopaste<CR>
-map ` :!perl -c %<CR>
-map + :w<CR>:!clear && perl %<CR>
-map ^ :TlistToggle<CR>
-map T :NERDTreeToggle<CR>
-
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-nmap <leader>n :set number!<CR>
-nmap <leader>i :set list! number!<CR>
-
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
 
 " only do this part when compiled with support for autocommands
 if has("autocmd")
