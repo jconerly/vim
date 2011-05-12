@@ -1,49 +1,45 @@
-"-------------------------"
-" vimrc for James Conerly "
-"-------------------------"
-
-" operational settings
-syntax on                              " syntax on
-filetype plugin indent on              " file type detection, plugins, indenting...
-                                       "  ... the cool stuff
-
+" vimrc - james conerly              " these comments are here because I forget
+                                     "  what all these do sometimes
+syntax on                            " syntax on
+filetype plugin indent on            " file type detection, plugins, indenting...
+                                     "  ... the cool stuff
 let mapleader=','
-let maplocalleader=','                 " all my macros start with ,
-let g:snips_author='James Conerly'     " For SnipMate plugin
+let maplocalleader=','               " all my macros start with ,
+let g:snips_author='James Conerly'   " For SnipMate plugin
 
-set title                              " better terminal title
-set nocompatible                       " vim defaults, not vi!
-set hidden                             " allow editing multiple unsaved buffers
-set more                               " the 'more' prompt
-set autoread                           " watch for file changes by other programs
-set visualbell                         " visual beep
-set noautowrite                        " don't automatically write on :next, etc
-set wildmenu                           " : menu has tab completion, etc
-set ruler                              " cursor location information
-set list                               " visualize tabbs and spaces
-set number                             " line numbers in lefthandmost column
-set hlsearch                           " Highlight search terms...
-set incsearch                          " ...dynamically as they are typed.
-set ignorecase                         " ignore case when performing searches
-set smartcase                          " case-sensitive only if there is a
-                                       "   capital letter in the search expression
-set encoding=utf-8                     " needed for special (wide) chars work
-set fileencoding=utf-8                 " needed for special (wide) chars work
-set shortmess=atI                      " stifle interruptive prompts
-set scrolloff=5                        " keep at least 5 lines above/below cursor
-set sidescrolloff=5                    " keep at least 5 columns l/r of cursor
-set history=1000                       " remember the last 200 commands
-set bg=dark                            " dark background settings
-set dictionary=/usr/share/dict/words   " dict
-set foldmethod=marker                  " fold code based on markers
-set showbreak=…                        " ellipsis for line contuations
-set backupdir-=.                       " handle swp files appropriately
-set backupdir^=~/tmp,/tmp              " handle swp files appropriately
-set directory=~/tmp//,.                " handle swp files appropriately
-set wildmode=list:longest              " Make file/command completion useful
-set backspace=indent,eol,start         " Intuitive backspacing in insert mode
-set modelines=0                        " no modelines
-                                       "   [http://www.guninski.com/vim1.html]
+set title                            " better terminal title
+set nocompatible                     " vim defaults, not vi!
+set hidden                           " allow editing multiple unsaved buffers
+set more                             " the 'more' prompt
+set autoread                         " watch for file changes by other programs
+set visualbell                       " visual beep
+set noautowrite                      " don't automatically write on :next, etc
+set wildmenu                         " : menu has tab completion, etc
+set ruler                            " cursor location information
+set list                             " visualize tabbs and spaces
+set number                           " line numbers in lefthandmost column
+set hlsearch                         " Highlight search terms...
+set incsearch                        " ...dynamically as they are typed.
+set ignorecase                       " ignore case when performing searches
+set smartcase                        " case-sensitive only if there is a
+                                     "   capital letter in the search expression
+set encoding=utf-8                   " needed for special (wide) chars work
+set fileencoding=utf-8               " needed for special (wide) chars work
+set shortmess=atI                    " stifle interruptive prompts
+set scrolloff=5                      " keep at least 5 lines above/below cursor
+set sidescrolloff=5                  " keep at least 5 columns l/r of cursor
+set history=1000                     " remember the last 200 commands
+set bg=dark                          " dark background settings
+set dictionary=/usr/share/dict/words " dictionary for spell checker
+set foldmethod=marker                " fold code based on markers
+set showbreak=…                      " ellipsis for line contuations
+set backupdir-=.                     " handle swp files appropriately
+set backupdir^=~/tmp,/tmp            " handle swp files appropriately
+set directory=~/tmp//,.              " handle swp files appropriately
+set wildmode=list:longest            " Make file/command completion useful
+set backspace=indent,eol,start       " Intuitive backspacing in insert mode
+set modelines=0                      " no modelines
+                                     "   [http://www.guninski.com/vim1.html]
 
 " Source the vimrc file after saving it
 if has("autocmd")
@@ -64,7 +60,7 @@ nmap <leader>e :e! ~/.vim/vimrc<CR>
 nmap <leader>C ,cyP
 
 " cut and paste helpers
-nmap <leader>Z :set paste<CR>
+nmap <leader>Z :set paste<CR>i
 nmap <leader>z :set nopaste<CR>
 
 " yank from cursor to end of line
@@ -88,6 +84,10 @@ nmap ~ :!perl -c %<CR>
 
 " PERL - execute script
 nmap + :w<CR>:!perl %<CR>
+
+" nice tab indenting
+vmap <TAB> >gv
+vmap <S-TAB> <gv
 
 " wrapping macro for simple paragraph formatting
 command! -nargs=* Wrap set wrap linebreak nolist
