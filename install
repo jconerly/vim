@@ -91,6 +91,7 @@ if [ -e "$TARGET_DATA" ] ; then
     rm -rf $TARGET_DATA
 fi
 
+echo
 echo -n 'installing badass vim environment... '
 cp -r $PACKAGE $TARGET_DATA
 ln -s $REAL_RC $TARGET_RC
@@ -108,3 +109,4 @@ if [[ ("$ORIG" == "1" ) || (-e "$ORIG_RC") ]] ; then
 fi
 
 echo done!
+echo
