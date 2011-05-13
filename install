@@ -13,12 +13,20 @@ SCRIPT_PATH="$TARGET_DATA/$SCRIPT"
 GIT_PATH="$TARGET_DATA/.git"
 CTAGS=$(which ctags)
 PAR=$(which par)
+FORCE_INST=0
+
+if [ "$1" == "-y" ] ; then
+    FORCE_INST=1
+fi
+
 
 if [ "$CTAGS" == "" ] ; then
-    echo
-    echo -n 'ctags is not installed. install it? [y/n] '
-    read INST
-    if [[ ("$INST" == "y") || ("$INST" == "Y") ]] ; then
+    if [ "$FORCE_INST" == "0" ] ; then
+        echo
+        echo -n 'ctags is not installed. install it? [y/n] '
+        read INST
+    fi
+    if [[ ("$FORCE_INST" == "1") || ("$INST" == "y") || ("$INST" == "Y") ]] ; then
         cd download/
         tar -xzf ctags-5.8.tar.gz
         cd ctags-5.8
@@ -39,10 +47,12 @@ if [ "$CTAGS" == "" ] ; then
 fi
 
 if [ "$PAR" == "" ] ; then
-    echo
-    echo -n 'par is not installed. install it? [y/n] '
-    read INST
-    if [[ ("$INST" == "y") || ("$INST" == "Y") ]] ; then
+    if [ "$FORCE_INST" == "0" ] ; then
+       echo
+       echo -n 'par is not installed. install it? [y/n] '
+       read INST
+    fi
+    if [[ ("$FORCE_INST" == "1") || ("$INST" == "y") || ("$INST" == "Y") ]] ; then
         cd download
         tar -xzf Par152.tar.gz
         cd Par152

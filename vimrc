@@ -67,10 +67,10 @@ nmap <leader>z :set nopaste<CR>
 nmap Y y$
 
 " toggle TagList plugin on and off
-map ^ :TlistToggle<CR>
+nmap <leader>^ :TlistToggle<CR>
 
 " tobble NERDTree plugin on and off
-nmap T :NERDTreeToggle<CR>
+nmap <leader>T :NERDTreeToggle<CR>
 
 " PERL - take a vselect block and turn it into an eval{} block
 vmap <leader>E S{Ieval <ESC>%A; warn $@ if $@;<ESC>
@@ -80,10 +80,10 @@ nmap <leader>P :%!perltidy -q<CR>
 vmap <leader>P !perltidy -q<CR>
 
 " PERL - check syntax
-nmap ~ :!perl -c %<CR>
+nmap <leader>~ :!perl -c %<CR>
 
 " PERL - execute script
-nmap + :w<CR>:!perl %<CR>
+nmap <leader>+ :w<CR>:!perl %<CR>
 
 " nice tab indenting
 vmap <TAB> >gv
