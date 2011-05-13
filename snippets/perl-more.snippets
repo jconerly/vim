@@ -21,6 +21,20 @@ snippet script
 	${1}
 
 	__END__
+# Regular Package
+snippet module
+	package ${1:class};
+	
+	use strict;
+	use warnings;
+	
+	${2:code...}
+	
+	1;
+	
+	__END__
+	
+	
 # Moose Package
 snippet moose
 	package ${1:class};
