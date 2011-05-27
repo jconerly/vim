@@ -53,9 +53,6 @@ nmap <leader>v :sp ~/.vim/vimrc<CR>
 nmap <leader>w :w!<CR>
 nmap <leader>W :wq!<CR>
 
-" fast editing of the vimrc
-nmap <leader>e :e! ~/.vim/vimrc<CR>
-
 " duplicate line with the dup commented out
 nmap <leader>C ,cyP
 
