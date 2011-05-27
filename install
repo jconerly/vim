@@ -102,7 +102,7 @@ if [ -e "$TARGET_DATA" ] ; then
 fi
 
 echo
-echo -n 'installing badass vim environment... '
+echo -n 'installing vim environment... '
 cp -r $PACKAGE $TARGET_DATA
 ln -s $REAL_RC $TARGET_RC
 

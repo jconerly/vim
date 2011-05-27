@@ -1,11 +1,11 @@
 " vimrc - james conerly              " these comments are here because I forget
                                      "  what all these do sometimes
-syntax on                            " syntax on
-filetype plugin indent on            " file type detection, plugins, indenting...
+syntax on
+filetype plugin indent on            " file type detection, plugins, indenting
                                      "  ... the cool stuff
 let mapleader=','
 let maplocalleader=','               " all my macros start with ,
-let g:snips_author='James Conerly'   " For SnipMate plugin
+let g:snips_author='James Conerly'   " for SnipMate plugin
 
 set title                            " better terminal title
 set nocompatible                     " vim defaults, not vi!
@@ -18,7 +18,7 @@ set wildmenu                         " : menu has tab completion, etc
 set ruler                            " cursor location information
 set list                             " visualize tabbs and spaces
 set number                           " line numbers in lefthandmost column
-set hlsearch                         " Highlight search terms...
+set hlsearch                         " highlight search terms...
 set incsearch                        " ...dynamically as they are typed.
 set ignorecase                       " ignore case when performing searches
 set smartcase                        " case-sensitive only if there is a
@@ -28,7 +28,7 @@ set fileencoding=utf-8               " needed for special (wide) chars work
 set shortmess=atI                    " stifle interruptive prompts
 set scrolloff=5                      " keep at least 5 lines above/below cursor
 set sidescrolloff=5                  " keep at least 5 columns l/r of cursor
-set history=1000                     " remember the last 200 commands
+set history=1000                     " remember the last N commands
 set bg=dark                          " dark background settings
 set dictionary=/usr/share/dict/words " dictionary for spell checker
 set foldmethod=marker                " fold code based on markers
@@ -36,8 +36,8 @@ set showbreak=…                      " ellipsis for line contuations
 set backupdir-=.                     " handle swp files appropriately
 set backupdir^=~/tmp,/tmp            " handle swp files appropriately
 set directory=~/tmp//,.              " handle swp files appropriately
-set wildmode=list:longest            " Make file/command completion useful
-set backspace=indent,eol,start       " Intuitive backspacing in insert mode
+set wildmode=list:longest            " make file/command completion useful
+set backspace=indent,eol,start       " intuitive backspacing in insert mode
 set modelines=0                      " no modelines
                                      "   [http://www.guninski.com/vim1.html]
 
