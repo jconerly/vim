@@ -1,4 +1,7 @@
 # Random helpers
+snippet open
+	open my $fh, '${1:<}', ${2:source}
+	    || ${3:die "error: $!";}
 snippet pr
 	print "${1}\n";
 # Data::Dumper Helpers
