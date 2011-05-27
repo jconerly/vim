@@ -4,8 +4,6 @@ OVERVIEW
 
 My VIM environment: vimrc, plugins, syntax, etc...
 
-DESCRIPTION: TODO
-
 -------
 INSTALL
 -------
@@ -13,12 +11,4 @@ INSTALL
 $ git clone git@github.com:jconerly/vim.git
 $ cd vim/
 $ ./install
-
-INSTALL NOTES: TODO
-
--------
-PLUGINS
--------
-
-
 
